@@ -6,46 +6,100 @@
         static void ShowMenu()
         {
             Console.WriteLine("1- Inserir novo usuário");
-            Console.WriteLine("2- Listar todos os usuarios registrados");
+            Console.WriteLine("2- Listar todas as contas registradas");
             Console.WriteLine("3- Deletar um usuário");
             Console.WriteLine("4- Detalhes de um usuário");
-            Console.WriteLine("5- Total armazenado no banco");
+            Console.WriteLine("5- Consutar valor total acumulado no banco");
             Console.WriteLine("6- Manipular conta"); // deposito, transferencia e saque 
             Console.WriteLine("0- Para sair do programa");
             Console.Write("Digite a opção desejada: ");
         }
-
+        
+        //REGISTRAR USUARIO
          static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
         {
-            Console.WriteLine("Digite o cpf: ");
+            Console.Write("Digite o cpf: ");
             cpfs.Add(Console.ReadLine());
 
-            Console.WriteLine("Digite o nome: ");
+            Console.Write("Digite o nome: ");
             titulares.Add(Console.ReadLine());
 
-            Console.WriteLine("Digite a senha: ");
+            Console.Write("Digite a senha: ");
             senhas.Add(Console.ReadLine());
 
             saldos.Add(0);
         }
 
+
+
+        //LISTAR USUARIOS REGISTRADOS
+
          static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
         {
-           for(int i = 0;  i < cpfs.Count; i++) 
+           for(int i = 0;  i < cpfs.Count; i++)
             {
-                Console.WriteLine($"CPF: {cpfs[i]} | Titular: {titulares[i]} | Saldo: R$:{saldos[i]:F2}" );
+                ApresentarConta(i, cpfs, titulares, saldos);
             }
+        }
+         
+               static void ApresentarConta(int index, List<string> cpfs, List<string> titulares, List<double> saldos)
+        {
+            Console.WriteLine($"CPF: {cpfs[index]} | Titular: {titulares[index]} | Saldo: R$:{saldos[index]:F2}");
         }
 
 
+        // DELETAR USUARIO
+
+        static void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        {
+            Console.Write("Digite o cpf: ");
+            string cpfParaDeletar = Console.ReadLine();
+            int indexParaDeletar = cpfs.FindIndex(cpf => cpf == cpfParaDeletar);
+
+            if (indexParaDeletar == -1)
+            {
+                Console.WriteLine("Conta não encontrada");
+                ShowMenu();
+            } 
+
+            cpfs.Remove(cpfParaDeletar);
+            titulares.RemoveAt(indexParaDeletar);
+            senhas.RemoveAt(indexParaDeletar);
+            saldos.RemoveAt(indexParaDeletar);
+
+            Console.WriteLine("Conta deletada com sucesso");
+        }
+
+        //DETALHES DE UM USUARIO 
+        static void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos)
+        {
+            Console.Write("Digite o cpf: ");
+            string cpfParaApresentar = Console.ReadLine();
+            int indexParaApresentar = cpfs.FindIndex(cpf => cpf == cpfParaApresentar);
+
+            if (indexParaApresentar == -1)
+            {
+                Console.WriteLine("Conta não encontrada");
+               ShowMenu();
+            }
+
+            ApresentarConta(indexParaApresentar, cpfs, titulares, saldos);
+        }
+
+        // TOTAL DO BANCO
+        static void ApresentarValorAcumulado(List<double> saldos)
+        {
+            Console.WriteLine($"Total acumulado no banco: {saldos.Sum()}");
+            
+        }
+
+
+        // MAIN
         public static void Main(string[] args)
         {
-            
+            Console.WriteLine("\t\t\tBEM VINDO(A) AO BYTE BANK!");
 
-            Console.WriteLine("Configurando alguns valores: ");
-            Console.WriteLine("Digite a quantidade de usuarios: ");
-            int quantidadeDeUsuarios = int.Parse(Console.ReadLine());
-
+           
             List<string> cpfs = new List<string>();
             List<string> titulares = new List<string>();
             List<string> senhas = new List<string>();
@@ -72,11 +126,22 @@
                     case 2:
                         ListarTodasAsContas(cpfs, titulares, saldos);
                         break;
+                    case 3:
+                        DeletarUsuario(cpfs, titulares, senhas, saldos);
+                        break;
+                    case 4:
+                        ApresentarUsuario(cpfs, titulares, saldos);
+                        break;
+                    case 5:
+                        ApresentarValorAcumulado(saldos);
+                        break;
+                    
+
                 }
                
                 Console.WriteLine("--------------------");
 
-            } while (option != 0);
+            } while (option != 0); 
             
                  
             

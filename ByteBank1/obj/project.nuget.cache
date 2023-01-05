@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g7akp2EWSOIi5XonXqGSL/MCCZtccXHSyOalmty2GWmd/pkbxeQAUvPAUMG91tyIWYCNDoC+27Zs0EGtK3Apew==",
+  "dgSpecHash": "YDWtdNE6VYwbiR2R+m6DhmS8uIOnuF+cO4rlBZ3/FqtaoJuii2/GfCigIEsnMDXEOz6OGj1J4ByQRWSC2OQcAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\isabe\\OneDrive\\Documentos\\SharpCoders\\ByteBank1\\ByteBank1\\ByteBank1.csproj",
+  "projectFilePath": "C:\\dev\\SharpCoders\\ByteBank1\\ByteBank1\\ByteBank1.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
