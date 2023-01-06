@@ -19,11 +19,11 @@
 
         static void ShowMenuUsuario()
         {
-            Console.WriteLine("1- Total na conta");
-            Console.WriteLine("2- Deposito");
-            Console.WriteLine("3- Saque");
-            Console.WriteLine("4- Transferência");
-            Console.WriteLine("0- Logout");
+            
+            Console.WriteLine("1- Deposito");
+            Console.WriteLine("2- Saque");
+            Console.WriteLine("3- Transferência");
+            
             Console.Write("Digite a opção desejada: ");
         }
 
@@ -92,7 +92,7 @@
             if (indexParaApresentar == -1)
             {
                 Console.WriteLine("Conta não encontrada");
-                
+
             }
 
             ApresentarConta(indexParaApresentar, cpfs, titulares, saldos);
@@ -134,9 +134,17 @@
 
             }
 
-            
+
         }
 
+        // DEPOSITO
+        static void DepositoUsuario(List<double> saldos)
+        {
+            Console.Write($"Valor para deposito R$: ");
+            double valorDeposito = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Valor para depositado R$: {valorDeposito:F2} ");
+
+        }
 
 
         // MAIN
@@ -154,7 +162,7 @@
 
             //List<double> saques = new List<double>();
             //List<double> transferencias = new List<double>();
-           // List<double> total = new List<double>();
+            // List<double> total = new List<double>();
 
 
 
@@ -197,15 +205,14 @@
                             optionTwo = int.Parse(Console.ReadLine());
                             switch (optionTwo)
                             {
-                                case 0:
-                                    Console.WriteLine("\t\t\tObrigado por utilizar o Byte Bank!");
-
+                                case 1:
+                                    DepositoUsuario(saldos);
                                     break;
 
                             }
 
                         } while (option != 0);
-                        
+
                         break;
                 }
 
