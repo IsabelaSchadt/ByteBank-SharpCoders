@@ -14,14 +14,24 @@
             Console.WriteLine("0- Para sair do programa");
             Console.Write("Digite a opção desejada: ");
         }
-        
+
+        //MENU USUARIO
+
+        static void ShowMenuUsuario()
+        {
+            Console.WriteLine("1- Deposito");
+            Console.WriteLine("2- Saque");
+            Console.WriteLine("3- Transferência");
+            Console.Write("Digite a opção desejada: ");
+        }
+
         //REGISTRAR USUARIO
-         static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
         {
             Console.Write("Digite o cpf: ");
             cpfs.Add(Console.ReadLine());
 
-            Console.Write("Digite o nome: ");
+            Console.Write("Digite o nome completo: ");
             titulares.Add(Console.ReadLine());
 
             Console.Write("Digite a senha: ");
@@ -34,15 +44,15 @@
 
         //LISTAR USUARIOS REGISTRADOS
 
-         static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
+        static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
         {
-           for(int i = 0;  i < cpfs.Count; i++)
+            for (int i = 0; i < cpfs.Count; i++)
             {
                 ApresentarConta(i, cpfs, titulares, saldos);
             }
         }
-         
-               static void ApresentarConta(int index, List<string> cpfs, List<string> titulares, List<double> saldos)
+
+        static void ApresentarConta(int index, List<string> cpfs, List<string> titulares, List<double> saldos)
         {
             Console.WriteLine($"CPF: {cpfs[index]} | Titular: {titulares[index]} | Saldo: R$:{saldos[index]:F2}");
         }
@@ -60,7 +70,7 @@
             {
                 Console.WriteLine("Conta não encontrada");
                 ShowMenu();
-            } 
+            }
 
             cpfs.Remove(cpfParaDeletar);
             titulares.RemoveAt(indexParaDeletar);
@@ -80,7 +90,7 @@
             if (indexParaApresentar == -1)
             {
                 Console.WriteLine("Conta não encontrada");
-               ShowMenu();
+                
             }
 
             ApresentarConta(indexParaApresentar, cpfs, titulares, saldos);
@@ -90,8 +100,14 @@
         static void ApresentarValorAcumulado(List<double> saldos)
         {
             Console.WriteLine($"Total acumulado no banco: {saldos.Sum()}");
-            
+
         }
+
+        //MANIPULAR CONTA
+        
+
+
+
 
 
         // MAIN
@@ -99,16 +115,19 @@
         {
             Console.WriteLine("\t\t\tBEM VINDO(A) AO BYTE BANK!");
 
-           
+
             List<string> cpfs = new List<string>();
             List<string> titulares = new List<string>();
             List<string> senhas = new List<string>();
             List<double> saldos = new List<double>();
-
+            
+            
+           
 
 
 
             int option;
+            int optionTwo;
             do
             {
                 ShowMenu();
@@ -117,11 +136,12 @@
 
                 switch (option)
                 {
-                    case 0: Console.WriteLine("\t\t\tObrigado por utilizar o Byte Bank!");
+                    case 0:
+                        Console.WriteLine("\t\t\tObrigado por utilizar o Byte Bank!");
                         break;
-                    case 1: 
+                    case 1:
                         RegistrarNovoUsuario(cpfs, titulares, senhas, saldos);
-                        
+
                         break;
                     case 2:
                         ListarTodasAsContas(cpfs, titulares, saldos);
@@ -135,19 +155,22 @@
                     case 5:
                         ApresentarValorAcumulado(saldos);
                         break;
-                    
+                    case 6:
+                        do
+                        {
+                            ShowMenuUsuario();
+                            optionTwo = int.Parse(Console.ReadLine());
 
+                        } while (option != 0);
+                        break;
                 }
-               
+
                 Console.WriteLine("--------------------");
 
-            } while (option != 0); 
-            
-                 
-            
-           
+            } while (option != 0);
+
+
         }
 
-        
     }
 }
