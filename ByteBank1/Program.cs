@@ -19,9 +19,11 @@
 
         static void ShowMenuUsuario()
         {
-            Console.WriteLine("1- Deposito");
-            Console.WriteLine("2- Saque");
-            Console.WriteLine("3- Transferência");
+            Console.WriteLine("1- Total na conta");
+            Console.WriteLine("2- Deposito");
+            Console.WriteLine("3- Saque");
+            Console.WriteLine("4- Transferência");
+            Console.WriteLine("0- Logout");
             Console.Write("Digite a opção desejada: ");
         }
 
@@ -104,9 +106,36 @@
         }
 
         //MANIPULAR CONTA
-        
 
+        //SAQUE
+        static void total(List<double> saldos, List<double> saques, List<double> total)
+        {
 
+        }
+
+        //LOGIN
+        static void LoginUsuario(List<string> cpfs, List<string> senhas)
+        {
+            Console.Write("Digite o cpf: ");
+            string cpfParaLogin = Console.ReadLine();
+            int indexParaCpfLogin = cpfs.FindIndex(cpf => cpf == cpfParaLogin);
+            Console.Write("Digite a senha: ");
+            string senhaParaLogin = Console.ReadLine();
+            int indexParaSenhaLogin = senhas.FindIndex(senha => senha == senhaParaLogin);
+
+            if (indexParaCpfLogin == -1)
+            {
+                Console.WriteLine("Conta não encontrada");
+
+            }
+            if (indexParaSenhaLogin == -1)
+            {
+                Console.WriteLine("Conta não encontrada");
+
+            }
+
+            
+        }
 
 
 
@@ -120,9 +149,14 @@
             List<string> titulares = new List<string>();
             List<string> senhas = new List<string>();
             List<double> saldos = new List<double>();
-            
-            
-           
+
+            // LISTA USUARIO
+
+            //List<double> saques = new List<double>();
+            //List<double> transferencias = new List<double>();
+           // List<double> total = new List<double>();
+
+
 
 
 
@@ -156,12 +190,22 @@
                         ApresentarValorAcumulado(saldos);
                         break;
                     case 6:
+                        LoginUsuario(cpfs, senhas);
                         do
                         {
                             ShowMenuUsuario();
                             optionTwo = int.Parse(Console.ReadLine());
+                            switch (optionTwo)
+                            {
+                                case 0:
+                                    Console.WriteLine("\t\t\tObrigado por utilizar o Byte Bank!");
+
+                                    break;
+
+                            }
 
                         } while (option != 0);
+                        
                         break;
                 }
 
