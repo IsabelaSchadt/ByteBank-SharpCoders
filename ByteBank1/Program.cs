@@ -159,8 +159,10 @@
 
             Console.Write($"Valor para transferir R$: ");
             double valorTransferencia = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Valor transferido R$: {valorTransferencia:F2} ");
-
+            
+            Console.Write("Cpf do titular beneficiário: ");
+            double cpfBeneficiario = double.Parse(Console.ReadLine());
+            Console.WriteLine("Transferência realizada com sucesso!");
         }
 
         // MAIN
