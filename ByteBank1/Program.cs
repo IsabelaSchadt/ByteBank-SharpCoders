@@ -107,11 +107,7 @@
 
         //MANIPULAR CONTA
 
-        //SAQUE
-        static void total(List<double> saldos, List<double> saques, List<double> total)
-        {
-
-        }
+       
 
         //LOGIN
         static void LoginUsuario(List<string> cpfs, List<string> senhas)
@@ -122,7 +118,7 @@
             Console.Write("Digite a senha: ");
             string senhaParaLogin = Console.ReadLine();
             int indexParaSenhaLogin = senhas.FindIndex(senha => senha == senhaParaLogin);
-
+            
             if (indexParaCpfLogin == -1)
             {
                 Console.WriteLine("Conta não encontrada");
@@ -134,23 +130,47 @@
 
             }
 
-
+            
         }
 
         // DEPOSITO
         static void DepositoUsuario(List<double> saldos)
         {
+            
             Console.Write($"Valor para deposito R$: ");
             double valorDeposito = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Valor para depositado R$: {valorDeposito:F2} ");
+            Console.WriteLine($"Valor depositado R$: {valorDeposito:F2} ");
 
         }
 
+        //SAQUE
+        static void SaqueUsuario(List<double> saldos)
+        {
+
+            Console.Write($"Valor para saque R$: ");
+            double valorSaque = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Valor sacado R$: {valorSaque:F2} ");
+
+        }
+
+        //TRANSFEFENCIA
+        static void TransferenciaUsuario(List<double> saldos)
+        {
+
+            Console.Write($"Valor para transferir R$: ");
+            double valorTransferencia = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Valor transferido R$: {valorTransferencia:F2} ");
+
+        }
 
         // MAIN
         public static void Main(string[] args)
         {
-            Console.WriteLine("\t\t\tBEM VINDO(A) AO BYTE BANK!");
+            
+            Console.WriteLine("~~~~~~\t\t\tBEM VINDO(A) AO BYTE BANK!\t\t\t~~~~");
+           
+            Console.WriteLine();
+            Console.WriteLine();
 
 
             List<string> cpfs = new List<string>();
@@ -208,7 +228,13 @@
                                 case 1:
                                     DepositoUsuario(saldos);
                                     break;
-
+                                case 2:
+                                    SaqueUsuario(saldos);
+                                    break;
+                                case 3:
+                                    TransferenciaUsuario(saldos);
+                                    break;
+                                
                             }
 
                         } while (option != 0);
